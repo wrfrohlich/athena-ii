@@ -1,0 +1,35 @@
+#! /bin/sh
+
+########################################################################################
+#
+#   @name       ftp_server
+#   @author     MSc. Eng. William da Rosa Fröhlich
+#   @date       2023.03.11
+#   @desc       Script for installing and configuring the FTP Server in the ATHENA-I
+#
+########################################################################################
+
+PWD=$(pwd)
+RED='\033[0;31m'
+NC='\033[0m'
+
+printf "\n"
+printf "##################################################\n"
+printf "#      Installing and Configuring FTP Server     #\n"
+printf "##################################################\n"
+printf "\n"
+
+apt-get install -y vsftpd=3.0.3-12
+
+cp -fR $PWD/files/vsftpd.conf /etc/vsftpd.conf
+
+mkdir -p /home/athena/ftp/files
+chmod a-w /home/athena/ftp
+
+systemctl restart vsftpd
+
+printf "\n"
+printf "##################################################\n"
+printf "#                   FTP Server                   #\n"
+printf "##################################################\n"
+printf "\n"
