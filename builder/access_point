@@ -1,0 +1,43 @@
+#! /bin/sh
+
+########################################################################################
+#
+#   @name       access_point
+#   @author     MSc. Eng. William da Rosa Fröhlich
+#   @date       2023.03.11
+#   @desc       Script for installing and configuring the Access Point in the ATHENA-I
+#
+########################################################################################
+
+PWD=$(pwd)
+RED='\033[0;31m'
+NC='\033[0m'
+
+printf "\n"
+printf "##################################################\n"
+printf "#     Installing and Configuring Access Point    #\n"
+printf "##################################################\n"
+printf "\n"
+
+apt-get install -y dnsmasq=2.85-1 hostapd=2:2.9.0-21
+
+systemctl stop dnsmasq
+systemctl stop hostapd
+
+mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bkp
+cp -fR $PWD/files/dhcpcd.conf /etc/dhcpcd.conf
+cp -fR $PWD/files/dnsmasq.conf /etc/dnsmasq.conf
+cp -fR $PWD/files/hostapd.conf /etc/hostapd/hostapd.conf
+cp -fR $PWD/files/hostapd /etc/default/hostapd
+
+service dhcpcd restart
+systemctl start dnsmasq
+systemctl unmask hostapd
+systemctl enable hostapd
+systemctl start hostapd
+
+printf "\n"
+printf "\n${RED}##################################################${NC}"
+printf "\n${RED}#               REBOOT YOUR DEVICE               #${NC}"
+printf "\n${RED}##################################################${NC}"
+printf "\n"
