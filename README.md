@@ -48,7 +48,7 @@ or
 
 - Access database:
 
-`sqlite3 /var/log/athena-i/athena-i.db`
+`sqlite3 /home/athena/ftp/files/athena-i/athena-i.db`
 
 - Start Manually the **Processing**
 
@@ -63,4 +63,4 @@ or
 
 - Remove database
 
-`rm -rf /var/log/athena-i/athena-i.db`
+`rm -rf /home/athena/ftp/files/athena-i/athena-i.db`

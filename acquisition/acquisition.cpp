@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 	int sockfd;
 	sockfd = socket(AF_INET,SOCK_DGRAM,0);
 	struct sockaddr_in serv;
-	char msg[44], ECG[5], EDA[5], RSP[5], current_time[20], name[20], new_name[21], control[5];
+	char msg[44], ECG[5], EDA[5], EMG[5], current_time[20], name[20], new_name[21], control[5];
 	
 	// Socket
 	serv.sin_family = AF_INET;
@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	socklen_t m = sizeof(serv);
 	
 	string file_name;
-	string start_name = "/var/log/athena-i/raw/";
+	string start_name = "/home/athena/ftp/files/athena-i/raw/";
 	string end_name = ".txt";
 	string s_day, s_month, s_year, s_hour, s_reference_time, s_min, s_sec;
 	
@@ -125,7 +125,7 @@ int main(int argc, char **argv)
 		myfile.open (file_name, ios::app);
 		
 		// Define the categories of the file
-		myfile << "NAME;SURNAME;ECG;EDA;RSP;TIME\n";
+		myfile << "NAME;SURNAME;ECG;EDA;EMG;TIME\n";
 		
 		// Close the file
 		myfile.close();
@@ -208,7 +208,7 @@ int main(int argc, char **argv)
 				myfile.open (file_name, ios::app);
 				
 				// Define the categories of the file
-				myfile << "NAME;SURNAME;ECG;EDA;RSP;TIME\n";
+				myfile << "NAME;SURNAME;ECG;EDA;EMG;TIME\n";
 				
 				// Close the file
 				myfile.close();

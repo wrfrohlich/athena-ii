@@ -44,14 +44,14 @@ class Processing():
             eda_signal = []
 
         try:
-            rsp_signal = bio_signals.resp.resp( signal=data_processing['RSP'],
+            emg_signal = bio_signals.emg.emg( signal=data_processing['EMG'],
                                                 sampling_rate=1000,
                                                 show=False)
         except:
-            log.log_out(SERVICE, "RSP - without enought data", "ERROR")
-            rsp_signal = []
+            log.log_out(SERVICE, "EMG - without enought data", "ERROR")
+            emg_signal = []
 
-        return ecg_signal, eda_signal, rsp_signal
+        return ecg_signal, eda_signal, emg_signal
 
 
     def heart_rate_process(data_processing, ecg_signal):
@@ -93,28 +93,28 @@ class Processing():
         db.database_eda(new_df)
 
 
-    def rsp_process(data_processing, rsp_signal):
-        new_df = pd.DataFrame(columns =['NAME','SURNAME','RSP','RSP_TS'])
+    def emg_process(data_processing, emg_signal):
+        new_df = pd.DataFrame(columns =['NAME','SURNAME','EMG','EMG_TS'])
 
-        new_df["RSP"] = rsp_signal["filtered"]
-        new_df["RSP_TS"] = rsp_signal["ts"]
+        new_df["EMG"] = emg_signal["filtered"]
+        new_df["EMG_TS"] = emg_signal["ts"]
 
-        size = len(rsp_signal["filtered"])
+        size = len(emg_signal["filtered"])
         new_df["NAME"] = data_processing["NAME"][0:size]
         new_df["SURNAME"] =  data_processing["SURNAME"][0:size]
 
-        db.database_rsp(new_df)
+        db.database_emg(new_df)
 
-    def data_format(ecg_signal, eda_signal, rsp_signal):
+    def data_format(ecg_signal, eda_signal, emg_signal):
         df = pd.DataFrame()
 
         ecg = pd.DataFrame(ecg_signal["filtered"])
         eda = pd.DataFrame(eda_signal["filtered"])
-        rsp = pd.DataFrame(rsp_signal["filtered"])
+        emg = pd.DataFrame(emg_signal["filtered"])
 
         df = pd.concat([df, ecg], axis = 1)
         df = pd.concat([df, eda], axis = 1)
-        df = pd.concat([df, rsp], axis = 1)
+        df = pd.concat([df, emg], axis = 1)
 
         df = df[15000:45000]
 

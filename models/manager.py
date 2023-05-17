@@ -66,7 +66,7 @@ class Manager():
                         cmd = "sudo /etc/athena-i/"
                         cmd += "acquisition/acquisition %s %s" % (  name,
                                                                     surname)
-                        cmd += " > /var/log/athena-i/acquisition.log &"
+                        cmd += " > /home/athena/ftp/files/athena-i/acquisition.log &"
                         subprocess.Popen(cmd,
                                         shell=True,
                                         close_fds=True)
@@ -100,7 +100,7 @@ class Manager():
         if not (data_processing.empty):
             db.database_raw_data (data_processing)
 
-            ecg, eda, rsp = process.main_processing(data_processing)
+            ecg, eda, emg = process.main_processing(data_processing)
 
             if len(ecg) != 0:
                 process.heart_rate_process(data_processing, ecg)
@@ -115,15 +115,15 @@ class Manager():
             else:
                 second_test = False
                 
-            if len(rsp) != 0:
-                process.rsp_process(data_processing, rsp)
-                third_test = len(rsp['filtered']) >= 55000
+            if len(emg) != 0:
+                process.emg_process(data_processing, emg)
+                third_test = len(emg['filtered']) >= 55000
             else:
                 third_test = False
 
 
             if first_test and second_test and third_test:
-                return process.data_format(ecg, eda, rsp), True
+                return process.data_format(ecg, eda, emg), True
 
         return None, False
 

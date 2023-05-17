@@ -42,7 +42,7 @@ DIR_NGINX_DEFAULT=/etc/nginx/conf.d/
 RAW=/raw
 ALERTS=/alerts
 REPORT=athena-i
-DIR_LOG=/var/log/
+DIR_LOG=/home/athena/ftp/files/
 
 sudo mv $DIR_ROOT $DIR_ETC
 
@@ -62,7 +62,7 @@ sudo apt-get install libatlas-base-dev -y
 sudo apt-get install nginx -y
 sudo apt-get install sqlite3 -y
 
-cat /etc/athena-i/database/init.sql | sqlite3 /var/log/athena-i/athena-i.db
+cat /etc/athena-i/database/init.sql | sqlite3 /home/athena/ftp/files/athena-i/athena-i.db
 
 pip install -r requirements.txt -q
 crontab -l|sed "\$a@reboot sudo python3 $DIR_API$API_FILE &"|crontab -

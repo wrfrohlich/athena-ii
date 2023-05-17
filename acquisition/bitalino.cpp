@@ -159,14 +159,14 @@ BITalino::VDevInfo BITalino::find(void)
 	inquiry_info ii[MAX_DEVS];
 	inquiry_info *pii = ii;
 	
-	int num_rsp = hci_inquiry(dev_id, 8, MAX_DEVS, NULL, &pii, IREQ_CACHE_FLUSH);
-	if(num_rsp < 0)
+	int num_emg = hci_inquiry(dev_id, 8, MAX_DEVS, NULL, &pii, IREQ_CACHE_FLUSH);
+	if(num_emg < 0)
 	{
 		::close(sock);
 		throw Exception(Exception::PORT_INITIALIZATION);
 	}
 	
-	for (int i = 0; i < num_rsp; i++)
+	for (int i = 0; i < num_emg; i++)
 	{
 		char addr[19], name[248];
 		ba2str(&ii[i].bdaddr, addr);

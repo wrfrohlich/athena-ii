@@ -3,7 +3,7 @@ CREATE TABLE raw_data (
     SURNAME TEXT,
     ECG REAL,
     EDA REAL,
-    RSP REAL,
+    EMG REAL,
     TIME TEXT
 );
 
@@ -28,9 +28,9 @@ CREATE TABLE eda (
     EDA_TS REAL
 );
 
-CREATE TABLE rsp (
+CREATE TABLE emg (
     NAME TEXT,
     SURNAME TEXT,
-    RSP REAL,
-    RSP_TS REAL
+    EMG REAL,
+    EMG_TS REAL
 );
