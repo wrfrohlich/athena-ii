@@ -61,6 +61,7 @@ sudo apt-get install python-dev -y
 sudo apt-get install libatlas-base-dev -y
 sudo apt-get install nginx -y
 sudo apt-get install sqlite3 -y
+sudo apt-get install pip
 
 cat /etc/athena-i/database/init.sql | sqlite3 /home/athena/ftp/files/athena-i/athena-i.db
 
