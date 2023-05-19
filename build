@@ -17,13 +17,13 @@ printf "##################################################\n"
 
 sed -i.bkp 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|i' /etc/ssh/sshd_config
 
-DIR_ETC=/etc/athena-i
-DIR_ROOT=/root/athena-i
-DIR_API=/etc/athena-i/api/
-DIR_NGINX=/etc/athena-i/nginx/
-DIR_PRED=/etc/athena-i/prediction/
-DIR_ACQUISITION=/etc/athena-i/acquisition/
-DIR_MODELS=/etc/athena-i/models/
+DIR_ETC=/etc/athena-ii
+DIR_ROOT=/root/athena-ii
+DIR_API=/etc/athena-ii/api/
+DIR_NGINX=/etc/athena-ii/nginx/
+DIR_PRED=/etc/athena-ii/prediction/
+DIR_ACQUISITION=/etc/athena-ii/acquisition/
+DIR_MODELS=/etc/athena-ii/models/
 
 API_LOG=/api.log
 API_FILE=api.py
@@ -41,7 +41,7 @@ DIR_NGINX_DEFAULT=/etc/nginx/conf.d/
 
 RAW=/raw
 ALERTS=/alerts
-REPORT=athena-i
+REPORT=athena-ii
 DIR_LOG=/home/athena/ftp/files/
 
 sudo mv $DIR_ROOT $DIR_ETC
@@ -63,7 +63,7 @@ sudo apt-get install nginx -y
 sudo apt-get install sqlite3 -y
 sudo apt-get install pip
 
-cat /etc/athena-i/database/init.sql | sqlite3 /home/athena/ftp/files/athena-i/athena-i.db
+cat /etc/athena-ii/database/init.sql | sqlite3 /home/athena/ftp/files/athena-ii/athena-ii.db
 
 pip install -r requirements.txt -q
 crontab -l|sed "\$a@reboot sudo python3 $DIR_API$API_FILE &"|crontab -

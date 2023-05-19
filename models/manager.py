@@ -63,10 +63,10 @@ class Manager():
                                             shell=True,
                                             close_fds=True)
                     else:
-                        cmd = "sudo /etc/athena-i/"
+                        cmd = "sudo /etc/athena-ii/"
                         cmd += "acquisition/acquisition %s %s" % (  name,
                                                                     surname)
-                        cmd += " > /home/athena/ftp/files/athena-i/acquisition.log &"
+                        cmd += " > /home/athena/ftp/files/athena-ii/acquisition.log &"
                         subprocess.Popen(cmd,
                                         shell=True,
                                         close_fds=True)

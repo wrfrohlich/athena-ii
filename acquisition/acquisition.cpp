@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	socklen_t m = sizeof(serv);
 	
 	string file_name;
-	string start_name = "/home/athena/ftp/files/athena-i/raw/";
+	string start_name = "/home/athena/ftp/files/athena-ii/raw/";
 	string end_name = ".txt";
 	string s_day, s_month, s_year, s_hour, s_reference_time, s_min, s_sec;
 	

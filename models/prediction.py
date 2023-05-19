@@ -24,14 +24,14 @@ SERVICE = "prediction"
 
 class PredictionOnline():
     def __init__(self):
-        self.model_file = "/etc/athena-i/prediction/model.sav"
+        self.model_file = "/etc/athena-ii/prediction/model.sav"
 
 
     def training(self):
-        x_train = pd.read_csv("/etc/athena-i/training/train-x", delimiter=';')
+        x_train = pd.read_csv("/etc/athena-ii/training/train-x", delimiter=';')
         x_train = x_train.to_numpy()
 
-        y_train = pd.read_csv("/etc/athena-i/training/train-y", delimiter=';')
+        y_train = pd.read_csv("/etc/athena-ii/training/train-y", delimiter=';')
         y_train = y_train.to_numpy()
 
         model=DecisionTreeClassifier()
@@ -70,7 +70,7 @@ class PredictionOnline():
 
 class PredictionOffline():
     def __init__(self):
-        self.model_file = "/etc/athena-i/prediction/model.sav"
+        self.model_file = "/etc/athena-ii/prediction/model.sav"
 
 
     def load(self, values, participant):
